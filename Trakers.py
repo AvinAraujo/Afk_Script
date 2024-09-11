@@ -1,26 +1,9 @@
-import tkinter as tk
 from pynput import mouse, keyboard
 import time, threading
 
 # Global variables
 mouse_positions = []
 tracking = True
-
-def create_gui():
-    """Create the main GUI window."""
-    root = tk.Tk()
-    root.geometry("400x400")
-    
-    start_button = tk.Button(root, text="Start")
-    start_button.pack(pady=10)
-
-    mouse_button = tk.Button(root, text="Track Mouse", command=start_mouse_tracking)
-    mouse_button.pack(pady=10)
-
-    keyboard_button = tk.Button(root, text="Keyboard", command=start_keyboard_listener)
-    keyboard_button.pack(pady=10)
-    
-    root.mainloop()
 
 def start_mouse_tracking():
     """Start tracking the mouse position and save only when left click is pressed."""
@@ -107,10 +90,3 @@ def start_keyboard_listener():
     with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
         listener.join()
         print(current_keys)
-
-def main():
-    """Main function to run the GUI application."""
-    create_gui()
-
-if __name__ == "__main__":
-    main()
