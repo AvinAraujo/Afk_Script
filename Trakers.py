@@ -61,7 +61,12 @@ def start_keyboard_listener():
         # Track currently pressed keys
         current_keys.append(key)
 
-    # Create the keyboard listener with the defined callbacks
-    with keyboard.Listener(on_press=on_press) as listener:
-        listener.join()
-        return current_keys
+    def track_keyboard():
+        # Create the keyboard listener with the defined callbacks
+        with keyboard.Listener(on_press=on_press) as listener:
+            listener.join()
+            print(current_keys)
+            return current_keys
+        
+    Keybord_listenr = threading.Thread(target=track_keyboard)
+    Keybord_listenr.start()
